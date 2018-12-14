@@ -4,10 +4,25 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+// router links
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var chatsRouter = require('./routes/chats');
+var authnRouter = require('./routes/authn');
 
 var app = express();
+
+// database
+var mongoose = require('mongoose');
+const url = 'mongodb://localhost:27017';
+mongoose.Promise = require('bluebird');
+mongoose.connect(url, { promiseLibrary: require('bluebird') })
+  .then(() => {
+    console.log('Connected successfully to server')
+  })
+  .catch((err) => {
+    console.error(err)
+  });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,8 +34,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// routes
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/user', usersRouter);
+app.use('/api/chat', chatsRouter);
+app.use('/api/auth', authnRouter);
+
+// redirect home if page does not exist
+app.get('*', (req, res) => {
+    res.redirect(301, '/');
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

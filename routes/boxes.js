@@ -1,42 +1,42 @@
 let express = require('express');
 let router = express.Router();
-let users = require('../models/users.js');
+let boxes = require('../models/boxes.js');
 
-/* GET users */
+/* GET boxes */
 router.get('/', function(req, res, next) {
-  users.find(function (err, products) {
-     if (err) return next(err);
-      res.json(products);
+  boxes.find(function (err, products) {
+    if (err) return next(err);
+    res.json(products);
   });
 });
 
-/* GET user by id */
+/* GET box by id */
 router.get('/:id', function(req, res, next) {
-  users.findById(req.params.id, function (err, post) {
+  boxes.findById(req.params.id, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* CREATE user */
+/* CREATE box */
 router.post('/', function(req, res, next) {
-  users.create(req.body, function (err, post) {
+  boxes.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* UPDATE user information */
+/* UPDATE box information */
 router.put('/:id', function(req, res, next) {
-  users.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  boxes.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-/* DELETE user */
+/* DELETE box */
 router.delete('/:id', function(req, res, next) {
-  users.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+  boxes.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
