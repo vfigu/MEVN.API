@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
+var config = require('./config')
 
 // router links
 var indexRouter = require('./routes/index');
@@ -10,13 +12,14 @@ var usersRouter = require('./routes/users');
 var chatsRouter = require('./routes/chats');
 var authnRouter = require('./routes/authn');
 
+var router = express.Router();
+
 var app = express();
 
 // database
 var mongoose = require('mongoose');
-const url = 'mongodb://localhost:27017';
 mongoose.Promise = require('bluebird');
-mongoose.connect(url, { promiseLibrary: require('bluebird') })
+mongoose.connect(config.database, { promiseLibrary: require('bluebird') })
   .then(() => {
     console.log('Connected successfully to server')
   })
@@ -36,9 +39,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // routes
 app.use('/', indexRouter);
+app.use('/api/auth', authnRouter);
 app.use('/api/user', usersRouter);
 app.use('/api/chat', chatsRouter);
-app.use('/api/auth', authnRouter);
 
 // redirect home if page does not exist
 app.get('*', (req, res) => {

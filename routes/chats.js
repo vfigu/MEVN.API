@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var chats = require('../models/chats.js');
 
+
+router.use(authorization);
+
 /* GET ALL chats */
 router.get('/', function(req, res, next) {
   chats.find(function (err, products) {
@@ -22,7 +25,6 @@ router.get('/:id', function(req, res, next) {
 router.post('/', function(req, res, next) {
   chats.create(req.body, function (err, post) {
     if (err) return next(err);
-    res.json(post);
   });
 });
 
@@ -30,7 +32,6 @@ router.post('/', function(req, res, next) {
 router.put('/:id', function(req, res, next) {
   chats.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
-    res.json(post);
   });
 });
 
@@ -38,7 +39,6 @@ router.put('/:id', function(req, res, next) {
 router.delete('/:id', function(req, res, next) {
   chats.findByIdAndRemove(req.params.id, req.body, function (err, post) {
     if (err) return next(err);
-    res.json(post);
   });
 });
 

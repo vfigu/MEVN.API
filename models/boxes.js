@@ -1,6 +1,7 @@
-let mongoose = require('mongoose');
+let mongoose = require('mongoose'),
+  Schema = mongoose.Schema;
 
-let boxesSchema = new mongoose.Schema({
+let BoxSchema = new Schema({
   id: Number,
   name: String,
   date_created: {
@@ -9,4 +10,4 @@ let boxesSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('boxes', boxesSchema);
+module.exports = mongoose.model('boxes', BoxSchema);

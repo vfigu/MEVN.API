@@ -1,6 +1,9 @@
-let express = require('express');
-let router = express.Router();
-let users = require('../models/users.js');
+const express = require('express');
+const router = express.Router();
+const users = require('../models/users.js');
+const authorization = require('../middlewares/authorization')
+
+router.use(authorization);
 
 /* GET users */
 router.get('/', function(req, res, next) {
@@ -13,14 +16,6 @@ router.get('/', function(req, res, next) {
 /* GET user by id */
 router.get('/:id', function(req, res, next) {
   users.findById(req.params.id, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
-});
-
-/* CREATE user */
-router.post('/', function(req, res, next) {
-  users.create(req.body, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });

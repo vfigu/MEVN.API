@@ -1,7 +1,7 @@
-let mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+let mongoose = require('mongoose'),
+  Schema = mongoose.Schema;
 
-let chatsSchema = new mongoose.Schema({
+let ChatSchema = new Schema({
   id: Number,
   name: String,
   room : {
@@ -15,4 +15,4 @@ let chatsSchema = new mongoose.Schema({
   message: String,
 });
 
-module.exports = mongoose.model('chats', chatsSchema);
+module.exports = mongoose.model('chats', ChatSchema);
