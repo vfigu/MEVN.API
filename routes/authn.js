@@ -1,8 +1,8 @@
-const express = require('express');
-const users = require('../models/users.js');
-const router = express.Router();
-const jwt = require('jsonwebtoken');
-const config = require('../config');
+var express = require('express');
+var users = require('../models/users.js');
+var router = express.Router();
+var jwt = require('jsonwebtoken');
+var config = require('../config');
 
 /* CREATE user */
 router.post('/register', function(req, res, next) {
@@ -36,6 +36,7 @@ router.post('/login', function(req, res, next) {
 
           // create token
           const payload = {
+            id: user._id,
             username: user.username,
             date_created: {
               type: Date,

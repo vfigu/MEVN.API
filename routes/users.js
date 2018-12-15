@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const users = require('../models/users.js');
-const authorization = require('../middlewares/authorization')
+var express = require('express');
+var router = express.Router();
+var users = require('../models/users.js');
+var authorization = require('../middlewares/authorization');
 
 router.use(authorization);
 

@@ -6,7 +6,7 @@ let ChatSchema = new Schema({
   name: String,
   room : {
     type: Schema.Types.ObjectId,
-    ref: 'boxes'
+    ref: 'lists'
   },
   date_created: {
     type: Date,

@@ -4,13 +4,13 @@ let mongoose = require('mongoose'),
     SALT_WORK_FACTOR = 10;
 
 let UserSchema = new Schema({
-  username: { type: String, required: true, index: { unique: true } },
+  username: { type: String, required: true, index: 2 },
   password: { type: String, required: true },
   url: String,
   date_created: {
     type: Date,
     default: Date.now
-  },
+  }
 });
 
 // password hashing

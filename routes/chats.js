@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 var chats = require('../models/chats.js');
+var authorization = require('../middlewares/authorization');
+var app = express();
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
 
 
 router.use(authorization);

@@ -1,7 +1,7 @@
 let mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-let BoxSchema = new Schema({
+let ListSchema = new Schema({
   id: Number,
   name: String,
   date_created: {
@@ -10,4 +10,4 @@ let BoxSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('boxes', BoxSchema);
+module.exports = mongoose.model('lists', ListSchema);
