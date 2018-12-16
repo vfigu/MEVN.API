@@ -1,8 +1,7 @@
-let mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 let ListSchema = new Schema({
-  id: Number,
   name: String,
   date_created: {
     type: Date,

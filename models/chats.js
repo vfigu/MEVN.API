@@ -1,8 +1,7 @@
-let mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 let ChatSchema = new Schema({
-  id: Number,
   name: String,
   room : {
     type: Schema.Types.ObjectId,

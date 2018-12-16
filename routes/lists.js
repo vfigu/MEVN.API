@@ -1,7 +1,7 @@
-var express = require('express');
-var router = express.Router();
-var lists = require('../models/lists.js');
-var authorization = require('../middlewares/authorization');
+const express = require('express');
+const router = express.Router();
+const lists = require('../models/lists.js');
+const authorization = require('../middlewares/authorization');
 
 router.use(authorization);
 

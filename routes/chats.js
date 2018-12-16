@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var chats = require('../models/chats.js');
-var authorization = require('../middlewares/authorization');
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+const express = require('express');
+const router = express.Router();
+const chats = require('../models/chats.js');
+const authorization = require('../middlewares/authorization');
+const app = express();
+const server = require('http').createServer(app);
+const io = require('../node_modules/socket.io')(server);
 
 
 router.use(authorization);

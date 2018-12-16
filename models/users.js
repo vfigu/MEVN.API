@@ -1,10 +1,10 @@
-let mongoose = require('mongoose'),
+const mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt'),
     SALT_WORK_FACTOR = 10;
 
 let UserSchema = new Schema({
-  username: { type: String, required: true, index: 2 },
+  username: { type: String, required: true, index: {unique: true} },
   password: { type: String, required: true },
   url: String,
   date_created: {
@@ -15,7 +15,7 @@ let UserSchema = new Schema({
 
 // password hashing
 UserSchema.pre('save', function(next) {
-  let user = this;
+    var user = this;
 
   // only hash the password if it has been modified (or is new)
   if (!user.isModified('password')) return next();

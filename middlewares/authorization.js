@@ -1,13 +1,13 @@
-var jwt = require('jsonwebtoken');
-var config = require('../config');
+const jwt = require('jsonwebtoken');
+const config = require('../config');
 
 // route middleware to verify a token
-var authorization = function (req, res, next) {
+let authorization = function (req, res, next) {
   // check header or url parameters or post parameters for token
   // var token = req.body.token || req.query.token || req.headers['token'];
-  var header = req.headers['authorization'];
-  var bearer = header.split(' ')[0];
-  var token = header.split(' ')[1];
+  let header = req.headers['authorization'];
+  let bearer = header.split(' ')[0];
+  let token = header.split(' ')[1];
 
   if (bearer !== 'Bearer') {
     return res.json({
