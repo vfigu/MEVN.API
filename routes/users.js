@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const users = require('../models/users.js');
-const authorization = require('../middlewares/authorization');
-
-router.use(authorization);
+// const authorization = require('../middlewares/authorization');
+// router.use(authorization);
 
 /* GET users */
 router.get('/', function(req, res, next) {
